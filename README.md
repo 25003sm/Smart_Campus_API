@@ -182,20 +182,6 @@ curl -i -X POST http://localhost:8080/api/v1/sensors \
   -d 'not-json'
 ```
 
-## Video Demonstration Checklist
-
-Use `VIDEO_SCRIPT.md` during your Blackboard recording. In the video, show:
-
-1. Discovery endpoint
-2. Room listing
-3. Room creation
-4. Sensor creation with valid room
-5. Filtered sensor retrieval
-6. Reading creation and updated `currentValue`
-7. Error handling for 422, 403, and 409
-8. Clear explanation that JAX-RS, not Spring Boot, was used
-9. Clear explanation that in-memory collections were used, not a database
-
 ## Conceptual Report Answers
 
 The module specification says the report answers must be written in the GitHub `README.md`, while another line mentions PDF format. To stay safe, this coursework includes the report in **both** formats:
@@ -280,18 +266,3 @@ The API includes a filter class that implements both `ContainerRequestFilter` an
 
 **Question: Why are JAX-RS filters better than manual logging inside every method?**  
 Filters are better for cross-cutting concerns such as logging because they centralise the behaviour in one reusable place. If logging statements were inserted manually into every resource method, the project would become repetitive, harder to maintain, and easier to break accidentally. Filters keep the resource methods focused on business logic while ensuring that all requests and responses are logged consistently across the application.
-
-## Submission Notes
-
-- This project is designed for upload to a **public GitHub repository**
-- Do **not** upload a ZIP file to Blackboard
-- Upload your **video demonstration separately** to Blackboard
-- Present yourself clearly in the video and explain the API behaviour while testing in Postman
-
-## Final Reminder
-
-Before submission:
-1. Push this project to GitHub
-2. Import the Postman collection
-3. Record the demonstration video
-4. Paste your public GitHub repository link into Blackboard
