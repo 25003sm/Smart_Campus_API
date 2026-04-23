@@ -1,0 +1,290 @@
+{
+  "info": {
+    "name": "Smart Campus API - Coursework",
+    "_postman_id": "7c4baef2-0b22-44c9-9a20-smart-campus",
+    "description": "Postman collection for the Smart Campus coursework API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api/v1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Discovery",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}",
+          "host": [
+            "{{baseUrl}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All Rooms",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/rooms",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "rooms"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Room",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"SCI-110\",\n  \"name\": \"Science Seminar Room\",\n  \"capacity\": 30\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/rooms",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "rooms"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Room by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/rooms/SCI-110",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "rooms",
+            "SCI-110"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Sensor",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"CO2-120\",\n  \"type\": \"CO2\",\n  \"status\": \"ACTIVE\",\n  \"currentValue\": 415.6,\n  \"roomId\": \"SCI-110\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/sensors",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "sensors"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Filter Sensors",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/sensors?type=CO2",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "sensors"
+          ],
+          "query": [
+            {
+              "key": "type",
+              "value": "CO2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Sensor by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/sensors/CO2-120",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "sensors",
+            "CO2-120"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add Reading",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"value\": 428.9,\n  \"timestamp\": 1760000000000\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/sensors/CO2-120/readings",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "sensors",
+            "CO2-120",
+            "readings"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Readings",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/sensors/CO2-120/readings",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "sensors",
+            "CO2-120",
+            "readings"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Trigger 422",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"TEMP-404\",\n  \"type\": \"Temperature\",\n  \"status\": \"ACTIVE\",\n  \"currentValue\": 22.1,\n  \"roomId\": \"ROOM-DOES-NOT-EXIST\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/sensors",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "sensors"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Trigger 403",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"value\": 25.2\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/sensors/TEMP-001/readings",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "sensors",
+            "TEMP-001",
+            "readings"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Trigger 409",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/rooms/ENG-201",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "rooms",
+            "ENG-201"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Trigger 415",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "not-json"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/sensors",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "sensors"
+          ]
+        }
+      }
+    }
+  ]
+}
