@@ -90,95 +90,62 @@ http://localhost:8080/api/v1
 
 ## Sample curl Commands
 
-### 1. Discovery
+### 1. Discovery Endpoint
 ```bash
 curl -i http://localhost:8080/api/v1
 ```
 
-### 2. Get all rooms
+### 2. Create a Room
 ```bash
-curl -i http://localhost:8080/api/v1/rooms
+curl -X POST http://localhost:8080/api/v1/rooms \
+-H "Content-Type: application/json" \
+-d '{
+  "id": "ROOM1",
+  "name": "Lecture Hall",
+  "capacity": 100
+}'
 ```
 
-### 3. Create a new room
+### 3. Get all Rooms
 ```bash
-curl -i -X POST http://localhost:8080/api/v1/rooms \
-  -H "Content-Type: application/json" \
-  -d '{
-    "id": "SCI-110",
-    "name": "Science Seminar Room",
-    "capacity": 30
-  }'
+curl -X GET http://localhost:8080/api/v1/rooms
 ```
 
-### 4. Get the new room
+### 4. Create a Sensor
 ```bash
-curl -i http://localhost:8080/api/v1/rooms/SCI-110
+curl -X POST http://localhost:8080/api/v1/sensors \
+-H "Content-Type: application/json" \
+-d '{
+  "id": "S1",
+  "type": "CO2",
+  "status": "ACTIVE",
+  "currentValue": 0,
+  "roomId": "ROOM1"
+}'
 ```
 
-### 5. Create a valid sensor
+### 5. Get all Sensors
 ```bash
-curl -i -X POST http://localhost:8080/api/v1/sensors \
-  -H "Content-Type: application/json" \
-  -d '{
-    "id": "CO2-120",
-    "type": "CO2",
-    "status": "ACTIVE",
-    "currentValue": 415.6,
-    "roomId": "SCI-110"
-  }'
+curl -X GET http://localhost:8080/api/v1/sensors
 ```
 
-### 6. Filter sensors by type
+### 6. Filter Sensors
 ```bash
-curl -i "http://localhost:8080/api/v1/sensors?type=CO2"
+curl -X GET "http://localhost:8080/api/v1/sensors?type=CO2"
 ```
 
-### 7. Add a reading to a valid sensor
+### 7. Add Sensor reading
 ```bash
-curl -i -X POST http://localhost:8080/api/v1/sensors/CO2-120/readings \
-  -H "Content-Type: application/json" \
-  -d '{
-    "value": 428.9,
-    "timestamp": 1760000000000
-  }'
+curl -X POST http://localhost:8080/api/v1/sensors/S1/readings \
+-H "Content-Type: application/json" \
+-d '{
+  "id": "R1",
+  "timestamp": 1713950000000,
+  "value": 45.5
+}'
 ```
 
-### 8. Get reading history
+### 8. Get Sensor reading
 ```bash
-curl -i http://localhost:8080/api/v1/sensors/CO2-120/readings
-```
-
-### 9. Trigger 422 using a missing roomId
-```bash
-curl -i -X POST http://localhost:8080/api/v1/sensors \
-  -H "Content-Type: application/json" \
-  -d '{
-    "id": "TEMP-404",
-    "type": "Temperature",
-    "status": "ACTIVE",
-    "currentValue": 22.1,
-    "roomId": "ROOM-DOES-NOT-EXIST"
-  }'
-```
-
-### 10. Trigger 403 using a maintenance sensor
-```bash
-curl -i -X POST http://localhost:8080/api/v1/sensors/TEMP-001/readings \
-  -H "Content-Type: application/json" \
-  -d '{
-    "value": 25.2
-  }'
-```
-
-### 11. Trigger 409 by deleting a room that still has sensors
-```bash
-curl -i -X DELETE http://localhost:8080/api/v1/rooms/ENG-201
-```
-
-### 12. Demonstrate 415 Unsupported Media Type
-```bash
-curl -i -X POST http://localhost:8080/api/v1/sensors \
-  -H "Content-Type: text/plain" \
-  -d 'not-json'
+curl -X GET http://localhost:8080/api/v1/sensors/S1/readings
 ```
