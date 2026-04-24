@@ -83,9 +83,9 @@ http://localhost:8080/api/v1
 | POST | `/api/v1/sensors/S1/readings` | Add Sensor Reading |
 | DELETE | `/api/v1/rooms/ROOM1` | Delete Romm with Sensor |
 | POST | `/api/v1/sensors` | Invalid Room |
-| POST | `/api/v1/sensors//SENSOR-M1/readings` | SensorUnavailableException |
-| GET | `/api/v1/rooms/%$#@!` | GlobalExceptionMapper |
-| GET | `/api/v1/rooms` | LoggingFilter |
+| POST | `/api/v1/sensors//SENSOR-M1/readings` | Sensor Unavailable Exception |
+| GET | `/api/v1/rooms/%$#@!` | Global Exception Mapping |
+| GET | `/api/v1/rooms` | Logging Filters |
 
 
 ## Sample curl Commands
