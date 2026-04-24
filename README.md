@@ -22,10 +22,7 @@ This coursework project implements a RESTful API for the **5COSC022W Client-Serv
 smart-campus-api-90/
 ├── pom.xml
 ├── README.md
-├── REPORT_ANSWERS.pdf
-├── REPORT_ANSWERS.md
 ├── SmartCampus.postman_collection.json
-├── VIDEO_SCRIPT.md
 └── src/
     └── main/
         ├── java/com/westminster/smartcampus/
