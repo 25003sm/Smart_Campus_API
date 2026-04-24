@@ -77,15 +77,19 @@ http://localhost:8080/api/v1
 | GET | `/api/v1` | Discovery endpoint |
 | GET | `/api/v1/rooms` | Get all rooms |
 | POST | `/api/v1/rooms` | Create a room |
-| GET | `/api/v1/rooms/{roomId}` | Get one room |
-| DELETE | `/api/v1/rooms/{roomId}` | Delete a room if it has no sensors |
-| GET | `/api/v1/sensors` | Get all sensors |
-| GET | `/api/v1/sensors?type=CO2` | Filter sensors by type |
-| POST | `/api/v1/sensors` | Create a sensor |
-| GET | `/api/v1/sensors/{sensorId}` | Get one sensor |
-| GET | `/api/v1/sensors/{sensorId}/readings` | Get reading history |
-| GET | `/api/v1/sensors/{sensorId}/readings/{readingId}` | Get a specific reading |
-| POST | `/api/v1/sensors/{sensorId}/readings` | Add a reading |
+| GET | `/api/v1/rooms/ROOM1` | Get one room |
+| DELETE | `/api/v1/rooms/ROOM1` | Room Deletion |
+| GET | `/api/v1/sensors` | Get all Sensors |
+| POST | `/api/v1/sensors` | Create Sensors |
+| GET | `/api/v1/sensors?type=CO2` | Filter Sensors |
+| GET | `/api/v1/sensors/S1` | Get Sensor Readings |
+| POST | `/api/v1/sensors/S1/readings` | Add Sensor Reading |
+| DELETE | `/api/v1/rooms/ROOM1` | Delete Romm with Sensor |
+| POST | `/api/v1/sensors` | Invalid Room |
+| POST | `/api/v1/sensors//SENSOR-M1/readings` | SensorUnavailableException |
+| GET | `/api/v1/rooms/%$#@!` | GlobalExceptionMapper |
+| GET | `/api/v1/rooms` | LoggingFilter |
+
 
 ## Sample curl Commands
 
