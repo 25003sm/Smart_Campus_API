@@ -81,7 +81,7 @@ http://localhost:8080/api/v1
 | GET | `/api/v1/sensors?type=CO2` | Filter Sensors |
 | GET | `/api/v1/sensors/S1` | Get Sensor Readings |
 | POST | `/api/v1/sensors/S1/readings` | Add Sensor Reading |
-| DELETE | `/api/v1/rooms/ROOM1` | Delete Romm with Sensor |
+| DELETE | `/api/v1/rooms/ROOM1` | Delete Room with Sensor |
 | POST | `/api/v1/sensors` | Invalid Room |
 | POST | `/api/v1/sensors//SENSOR-M1/readings` | Sensor Unavailable Exception |
 | GET | `/api/v1/rooms/%$#@!` | Global Exception Mapping |
